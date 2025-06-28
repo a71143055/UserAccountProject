@@ -3,9 +3,11 @@ package kr.ac.kopo.jeong.useraccountproject.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Entity
+@Table(name = "users")
 @Getter
 @Setter
-@Entity
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -13,6 +15,8 @@ public class User {
     private Long id;
 
     private String username;
+
     private String password;
+
     private String email;
 }

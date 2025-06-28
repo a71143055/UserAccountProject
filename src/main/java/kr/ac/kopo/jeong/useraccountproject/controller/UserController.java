@@ -1,5 +1,6 @@
 package kr.ac.kopo.jeong.useraccountproject.controller;
 
+
 import kr.ac.kopo.jeong.useraccountproject.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,8 @@ public class UserController {
             );
             return ResponseEntity.ok("회원가입 성공!");
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body("실패: " + e.getMessage());
         }
     }
 }
+
