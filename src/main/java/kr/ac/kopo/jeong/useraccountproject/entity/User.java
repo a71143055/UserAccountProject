@@ -1,5 +1,10 @@
 package kr.ac.kopo.jeong.useraccountproject.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import org.springframework.data.annotation.Id;
+
 @Entity
 public class User {
     @Id
@@ -10,4 +15,3 @@ public class User {
     private String password;
     private String email;
 }
-
