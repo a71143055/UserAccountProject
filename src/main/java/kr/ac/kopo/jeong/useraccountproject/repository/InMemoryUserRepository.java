@@ -24,4 +24,3 @@ public class InMemoryUserRepository {
         return Optional.ofNullable(users.get(username));
     }
 }
-
