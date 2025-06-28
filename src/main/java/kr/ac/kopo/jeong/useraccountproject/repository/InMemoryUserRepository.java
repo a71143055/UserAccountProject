@@ -1,9 +1,11 @@
 package kr.ac.kopo.jeong.useraccountproject.repository;
 
+
 import kr.ac.kopo.jeong.useraccountproject.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
@@ -18,7 +20,8 @@ public class InMemoryUserRepository {
         users.put(user.getUsername(), user);
     }
 
-    public User findByUsername(String username) {
-        return users.get(username);
+    public Optional<User> findByUsername(String username) {
+        return Optional.ofNullable(users.get(username));
     }
 }
+

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
     private final InMemoryUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -24,3 +25,4 @@ public class UserService {
         userRepository.save(user);
     }
 }
+
