@@ -145,9 +145,11 @@
         e.preventDefault();
         const username = document.getElementById("login-username").value;
 
+        // 여기선 임시로 로그인 성공 처리
         localStorage.setItem("loggedInUser", username);
-        window.location.href = "/home.html";
+        window.location.href = "/dashboard.html"; // ✅ 로그인 후 전용 페이지로 이동
     });
+
 </script>
 </body>
 </html>

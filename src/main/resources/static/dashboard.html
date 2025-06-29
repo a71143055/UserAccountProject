@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>대시보드</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dashboard {
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+        }
+
+        button {
+            padding: 0.6rem 1.5rem;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <h1 id="greeting">환영합니다!</h1>
+    <button onclick="logout()">로그아웃</button>
+</div>
+
+<script>
+    const username = localStorage.getItem("loggedInUser");
+    const greeting = document.getElementById("greeting");
+
+    if (!username) {
+        alert("로그인이 필요합니다.");
+        window.location.href = "/index.html";
+    } else {
+        greeting.textContent = `${username}님, 환영합니다!`;
+    }
+
+    function logout() {
+        localStorage.removeItem("loggedInUser");
+        window.location.href = "/home.html";
+    }
+</script>
+</body>
+</html>
