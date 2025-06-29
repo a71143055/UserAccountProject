@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>파일 보기</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #f5f7fa;
+            padding: 2rem;
+            color: #333;
+        }
+        .file-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: auto;
+        }
+        .filename {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .file-preview {
+            border: 1px dashed #ccc;
+            padding: 1.5rem;
+            text-align: center;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+<div class="file-container">
+    <div class="filename">📄 보고서_최종.pdf</div>
+    <div class="file-preview">
+        ▶️ PDF 미리보기 또는 다운로드 버튼 위치 <br />
+        (또는 실제 파일 내장 iframe/viewer로 구성 가능)
+    </div>
+</div>
+</body>
+</html>
