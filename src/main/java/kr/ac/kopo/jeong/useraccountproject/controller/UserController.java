@@ -1,20 +1,17 @@
 package kr.ac.kopo.jeong.useraccountproject.controller;
 
-
-import kr.ac.kopo.jeong.useraccountproject.Service.UserService;
+import kr.ac.kopo.jeong.useraccountproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class UserController {
+
     private final UserService userService;
 
     @PostMapping("/signup")
@@ -31,4 +28,3 @@ public class UserController {
         }
     }
 }
-

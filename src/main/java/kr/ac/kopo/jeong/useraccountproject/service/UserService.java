@@ -1,4 +1,4 @@
-package kr.ac.kopo.jeong.useraccountproject.Service;
+package kr.ac.kopo.jeong.useraccountproject.service;
 
 import kr.ac.kopo.jeong.useraccountproject.entity.User;
 import kr.ac.kopo.jeong.useraccountproject.repository.InMemoryUserRepository;
