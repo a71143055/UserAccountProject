@@ -2,13 +2,8 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>Welcome - 사용자 계정 시스템</title>
+  <title>홈페이지</title>
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Noto Sans KR', sans-serif;
-    }
-
     body {
       margin: 0;
       background: linear-gradient(to right, #8EC5FC, #E0C3FC);
@@ -16,31 +11,25 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      font-family: 'Noto Sans KR', sans-serif;
     }
-
-    .intro-box {
-      background-color: white;
+    .intro {
+      background: white;
       padding: 3rem;
       border-radius: 12px;
       text-align: center;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       max-width: 480px;
+      width: 90%;
     }
-
     h1 {
+      font-size: 1.8rem;
       margin-bottom: 1rem;
       color: #333;
     }
-
-    p {
-      color: #666;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-    }
-
     .btn {
       display: inline-block;
-      padding: 0.75rem 2rem;
+      padding: 0.75rem 1.5rem;
       margin: 0.5rem;
       border-radius: 6px;
       border: none;
@@ -50,18 +39,34 @@
       cursor: pointer;
       text-decoration: none;
     }
-
     .btn.secondary {
       background-color: #2196F3;
     }
   </style>
 </head>
 <body>
-<div class="intro-box">
-  <h1>환영합니다!</h1>
-  <p>이 서비스는 간단한 회원가입/로그인 시스템을 제공합니다.</p>
-  <a href="/index.html" class="btn">로그인</a>
-  <a href="/index.html" class="btn secondary">회원가입</a>
+<div class="intro">
+  <h1 id="greetingBox">환영합니다!</h1>
+  <div id="authButtons">
+    <a href="/index.html" class="btn">로그인</a>
+    <a href="/index.html" class="btn secondary">회원가입</a>
+  </div>
 </div>
+
+<script>
+  const user = localStorage.getItem("loggedInUser");
+  const greetingBox = document.getElementById("greetingBox");
+  const authButtons = document.getElementById("authButtons");
+
+  if (user) {
+    greetingBox.textContent = `${user}님, 환영합니다!`;
+    authButtons.innerHTML = `<button class="btn" onclick="logout()">로그아웃</button>`;
+  }
+
+  function logout() {
+    localStorage.removeItem("loggedInUser");
+    location.reload();
+  }
+</script>
 </body>
 </html>

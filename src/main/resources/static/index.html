@@ -2,77 +2,91 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8" />
-    <title>로그인 및 회원가입</title>
+    <title>회원 계정</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
             background-color: #f0f2f5;
+            font-family: 'Noto Sans KR', sans-serif;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
         }
+
         .container {
             background: white;
             padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 350px;
+            border-radius: 10px;
+            width: 340px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
+
         input {
             width: 100%;
+            padding: 0.7rem;
             margin: 0.5rem 0;
-            padding: 0.5rem;
-            border: 1px solid #ccc;
             border-radius: 5px;
+            border: 1px solid #ccc;
         }
+
         button {
             width: 100%;
-            padding: 0.7rem;
+            padding: 0.8rem;
             margin-top: 1rem;
             background-color: #4CAF50;
-            color: white;
             border: none;
-            border-radius: 5px;
+            color: white;
+            border-radius: 6px;
             cursor: pointer;
         }
+
         .toggle {
-            margin-top: 1rem;
             text-align: center;
+            margin-top: 1rem;
             font-size: 0.9rem;
-            color: #555;
         }
+
         .toggle a {
             color: #007BFF;
-            text-decoration: none;
             cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .alert {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: crimson;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-<div class="container" id="formBox">
+<div class="container">
     <h2 id="formTitle">로그인</h2>
+
     <form id="loginForm">
-        <input type="text" placeholder="아이디" required />
-        <input type="password" placeholder="비밀번호" required />
+        <input type="text" id="login-username" placeholder="아이디" required />
+        <input type="password" id="login-password" placeholder="비밀번호" required />
         <button type="submit">로그인</button>
     </form>
 
-    <form id="signupForm" style="display:none;">
-        <input type="text" placeholder="아이디" required />
-        <input type="text" placeholder="전화번호" required />
-        <input type="password" placeholder="비밀번호" required />
-        <input type="password" placeholder="비밀번호 확인" required />
+    <form id="signupForm" style="display: none;">
+        <input type="text" id="signup-username" placeholder="아이디" required />
+        <input type="password" id="signup-password" placeholder="비밀번호" required />
+        <input type="email" id="signup-email" placeholder="이메일" required />
         <button type="submit">회원가입</button>
     </form>
 
-    <div class="toggle">
-        <span id="toggleText">계정이 없으신가요? <a onclick="toggleForm()">회원가입</a></span>
+    <div class="toggle" id="toggleText">
+        계정이 없으신가요? <a onclick="toggleForm()">회원가입</a>
     </div>
+
+    <div class="alert" id="alertBox"></div>
 </div>
 
 <script>
@@ -81,16 +95,52 @@
         const signupForm = document.getElementById("signupForm");
         const formTitle = document.getElementById("formTitle");
         const toggleText = document.getElementById("toggleText");
+        const alertBox = document.getElementById("alertBox");
 
-        const isLoginVisible = loginForm.style.display !== "none";
+        const isLogin = loginForm.style.display !== "none";
 
-        loginForm.style.display = isLoginVisible ? "none" : "block";
-        signupForm.style.display = isLoginVisible ? "block" : "none";
-        formTitle.textContent = isLoginVisible ? "회원가입" : "로그인";
-        toggleText.innerHTML = isLoginVisible
+        loginForm.style.display = isLogin ? "none" : "block";
+        signupForm.style.display = isLogin ? "block" : "none";
+        formTitle.textContent = isLogin ? "회원가입" : "로그인";
+        toggleText.innerHTML = isLogin
             ? '계정이 있으신가요? <a onclick="toggleForm()">로그인</a>'
             : '계정이 없으신가요? <a onclick="toggleForm()">회원가입</a>';
+        alertBox.textContent = "";
     }
+
+    // ✅ 회원가입 기능
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const username = document.getElementById("signup-username").value;
+        const password = document.getElementById("signup-password").value;
+        const email = document.getElementById("signup-email").value;
+        const alertBox = document.getElementById("alertBox");
+
+        fetch("/api/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password, email })
+        })
+            .then(res => res.text())
+            .then(msg => {
+                alertBox.textContent = msg;
+                alertBox.style.color = msg.includes("성공") ? "green" : "crimson";
+            })
+            .catch(() => {
+                alertBox.textContent = "오류가 발생했습니다.";
+                alertBox.style.color = "crimson";
+            });
+    });
+
+    // ✅ 로그인 기능 (간단한 로컬 상태 저장 후 이동)
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const username = document.getElementById("login-username").value;
+
+        // TODO: 실제 로그인 검증 로직 붙이기
+        localStorage.setItem("loggedInUser", username);
+        location.href = "/home.html";
+    });
 </script>
 </body>
 </html>
