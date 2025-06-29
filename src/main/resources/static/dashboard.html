@@ -111,6 +111,15 @@
             border-bottom: none;
         }
 
+        .card-list a {
+            text-decoration: none;
+            color: #1967d2;
+        }
+
+        .card-list a:hover {
+            text-decoration: underline;
+        }
+
         input[type="checkbox"] {
             transform: scale(1.1);
         }
@@ -140,8 +149,8 @@
         <button class="logout-btn" onclick="logout()">로그아웃</button>
     </div>
 
-    <!-- 📁 드라이브 섹션 -->
-    <div class="section" id="driveSection" style="display: block;">
+    <!-- 드라이브 섹션 -->
+    <div class="section" id="driveSection">
         <h3>📁 내 드라이브</h3>
         <ul class="card-list">
             <li>
@@ -159,7 +168,7 @@
         </ul>
     </div>
 
-    <!-- 📧 메일 섹션 -->
+    <!-- 메일 섹션 -->
     <div class="section" id="mailSection" style="display: none;">
         <h3>📧 받은 메일함</h3>
         <ul class="card-list">
@@ -178,15 +187,45 @@
         </ul>
     </div>
 
-
-    <!-- ⚙️ 설정 섹션 -->
+    <!-- 설정 섹션 -->
     <div class="section" id="settingsSection" style="display: none;">
         <h3>⚙️ 사용자 설정</h3>
         <ul class="card-list">
             <li><a href="/settings/profile.html">👤 프로필 정보 수정</a></li>
             <li><a href="/settings/password.html">🔒 비밀번호 변경</a></li>
             <li><a href="/settings/notifications.html">🔔 이메일 알림 설정</a></li>
-            <li><a href="/settings/storage.html">💾 저장 공간 확인 (30% 사용 중)</a></li>
-            <li><a href="/settings/security.html">🛡️ 로그인 알림 및 보안 설정</a></li>
+            <li><a href="/settings/storage.html">💾 저장 공간 확인</a></li>
+            <li><a href="/settings/security.html">🛡️ 로그인 보안 설정</a></li>
         </ul>
     </div>
+</div>
+
+<script>
+    const username = localStorage.getItem("loggedInUser");
+    const welcomeText = document.getElementById("welcomeText");
+
+    if (!username) {
+        alert("로그인이 필요합니다.");
+        location.href = "/index.html";
+    } else {
+        welcomeText.textContent = `${username}님, 반갑습니다!`;
+    }
+
+    function logout() {
+        localStorage.removeItem("loggedInUser");
+        localStorage.removeItem("userMeta");
+        location.href = "/home.html";
+    }
+
+    function showSection(section) {
+        const sections = ["drive", "mail", "settings"];
+        sections.forEach(id => {
+            const el = document.getElementById(id + "Section");
+            if (el) {
+                el.style.display = (id === section) ? "block" : "none";
+            }
+        });
+    }
+</script>
+</body>
+</html>
