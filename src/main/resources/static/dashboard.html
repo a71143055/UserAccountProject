@@ -170,8 +170,16 @@
 
     <!-- 메일 섹션 -->
     <div class="section" id="mailSection" style="display: none;">
-        <h3>📧 받은 메일함</h3>
-        <ul class="card-list">
+        <h3>📧 메일함</h3>
+
+        <!-- 탭 버튼 -->
+        <div style="margin-bottom: 1rem;">
+            <button onclick="toggleMail('inbox')" style="margin-right: 8px;">📥 받은 메일</button>
+            <button onclick="toggleMail('sent')">📤 보낸 메일</button>
+        </div>
+
+        <!-- 받은 메일 목록 -->
+        <ul class="card-list" id="inboxList">
             <li>
                 <input type="checkbox" name="mail" value="verify" />
                 <a href="/mail/verify.html">[관리자] 계정 인증 안내</a>
@@ -185,7 +193,20 @@
                 <a href="/mail/security.html">[안내] 보안 설정 변경 알림</a>
             </li>
         </ul>
+
+        <!-- 보낸 메일 목록 -->
+        <ul class="card-list" id="sentList" style="display: none;">
+            <li>
+                <input type="checkbox" name="sent" value="project" />
+                <a href="/mail/sent/project.html">[김대리] 프로젝트 일정 공유</a>
+            </li>
+            <li>
+                <input type="checkbox" name="sent" value="thanks" />
+                <a href="/mail/sent/thanks.html">[인사팀] 감사 인사 메일</a>
+            </li>
+        </ul>
     </div>
+
 
     <!-- 설정 섹션 -->
     <div class="section" id="settingsSection" style="display: none;">
