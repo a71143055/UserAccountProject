@@ -141,24 +141,43 @@
     </div>
 
     <!-- 📁 드라이브 섹션 -->
-    <div class="section" id="driveSection">
+    <div class="section" id="driveSection" style="display: block;">
         <h3>📁 내 드라이브</h3>
         <ul class="card-list">
-            <li><input type="checkbox" name="drive" value="report.pdf" />보고서_최종.pdf</li>
-            <li><input type="checkbox" name="drive" value="design.jpg" />포스터디자인.jpg</li>
-            <li><input type="checkbox" name="drive" value="meeting.docx" />회의록.docx</li>
+            <li>
+                <input type="checkbox" name="drive" value="report.pdf" />
+                <a href="/files/report.pdf" target="_blank">보고서_최종.pdf</a>
+            </li>
+            <li>
+                <input type="checkbox" name="drive" value="design.jpg" />
+                <a href="/files/design.jpg" target="_blank">포스터디자인.jpg</a>
+            </li>
+            <li>
+                <input type="checkbox" name="drive" value="meeting.docx" />
+                <a href="/files/meeting.docx" target="_blank">회의록.docx</a>
+            </li>
         </ul>
     </div>
 
-    <!-- 📬 메일 섹션 -->
+    <!-- 📧 메일 섹션 -->
     <div class="section" id="mailSection" style="display: none;">
         <h3>📧 받은 메일함</h3>
         <ul class="card-list">
-            <li><input type="checkbox" name="mail" value="verify" />[관리자] 계정 인증 안내</li>
-            <li><input type="checkbox" name="mail" value="newsletter" />[홍보팀] 5월 뉴스레터</li>
-            <li><input type="checkbox" name="mail" value="security" />[안내] 보안 설정 변경 알림</li>
+            <li>
+                <input type="checkbox" name="mail" value="verify" />
+                <a href="/mail/verify.html">[관리자] 계정 인증 안내</a>
+            </li>
+            <li>
+                <input type="checkbox" name="mail" value="newsletter" />
+                <a href="/mail/newsletter.html">[홍보팀] 5월 뉴스레터</a>
+            </li>
+            <li>
+                <input type="checkbox" name="mail" value="security" />
+                <a href="/mail/security.html">[안내] 보안 설정 변경 알림</a>
+            </li>
         </ul>
     </div>
+
 
     <!-- ⚙️ 설정 섹션 -->
     <div class="section" id="settingsSection" style="display
