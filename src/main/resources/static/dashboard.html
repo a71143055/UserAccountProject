@@ -280,6 +280,11 @@
             }
         });
     }
+
+    function toggleMail(type) {
+        document.getElementById("inboxList").style.display = (type === "inbox") ? "block" : "none";
+        document.getElementById("sentList").style.display = (type === "sent") ? "block" : "none";
+    }
 </script>
 </body>
 </html>
