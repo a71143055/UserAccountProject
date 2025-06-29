@@ -13,6 +13,7 @@
       align-items: center;
       font-family: 'Noto Sans KR', sans-serif;
     }
+
     .intro {
       background: white;
       padding: 3rem;
@@ -22,11 +23,13 @@
       max-width: 480px;
       width: 90%;
     }
+
     h1 {
       font-size: 1.8rem;
       margin-bottom: 1rem;
       color: #333;
     }
+
     .btn {
       display: inline-block;
       padding: 0.75rem 1.5rem;
@@ -39,12 +42,40 @@
       cursor: pointer;
       text-decoration: none;
     }
+
     .btn.secondary {
       background-color: #2196F3;
+    }
+
+    /* 🔹 오른쪽 상단 네비게이션 버튼 스타일 */
+    .top-right-nav {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      z-index: 100;
+    }
+
+    .nav-link {
+      background-color: #333;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      background-color: #555;
     }
   </style>
 </head>
 <body>
+<!-- 🔹 고정된 상단 네비게이션 버튼 -->
+<div class="top-right-nav">
+  <a href="/index.html" id="navAction" class="nav-link">로그인 / 회원가입</a>
+</div>
+
 <div class="intro">
   <h1 id="greetingBox">환영합니다!</h1>
   <div id="authButtons">
@@ -57,10 +88,17 @@
   const user = localStorage.getItem("loggedInUser");
   const greetingBox = document.getElementById("greetingBox");
   const authButtons = document.getElementById("authButtons");
+  const navAction = document.getElementById("navAction");
 
   if (user) {
     greetingBox.textContent = `${user}님, 환영합니다!`;
     authButtons.innerHTML = `<button class="btn" onclick="logout()">로그아웃</button>`;
+    navAction.textContent = "로그아웃";
+    navAction.href = "#";
+    navAction.onclick = () => {
+      logout();
+      return false;
+    };
   }
 
   function logout() {
