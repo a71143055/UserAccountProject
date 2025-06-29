@@ -2,8 +2,13 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>홈페이지</title>
+  <title>UserAccount</title>
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
     body {
       margin: 0;
       background: linear-gradient(to right, #8EC5FC, #E0C3FC);
@@ -11,7 +16,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Noto Sans KR', sans-serif;
     }
 
     .intro {
@@ -30,6 +34,18 @@
       color: #333;
     }
 
+    /* 🟦 왼쪽 위 브랜드 이름 */
+    .top-left-brand {
+      position: fixed;
+      top: 20px;
+      left: 30px;
+      z-index: 100;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* 🟥 오른쪽 위 로그인/로그아웃 버튼 */
     .top-right-nav {
       position: fixed;
       top: 20px;
@@ -53,17 +69,15 @@
   </style>
 </head>
 <body>
-<!-- 왼쪽 상단 웹 이름 -->
-<div class="top-left-brand">
-  <span class="brand-name">UserAccount</span>
-</div>
+<!-- 🔹 사이트 이름 -->
+<div class="top-left-brand">UserAccount</div>
 
-<!-- 오른쪽 상단 로그인/로그아웃 버튼 -->
+<!-- 🔸 로그인 / 로그아웃 버튼 -->
 <div class="top-right-nav">
   <a href="/index.html" id="navAction" class="nav-link">로그인 / 회원가입</a>
 </div>
 
-<!-- 중앙 본문 -->
+<!-- 🟡 중앙 환영 메시지 -->
 <div class="intro">
   <h1 id="greetingBox">환영합니다!</h1>
 </div>
