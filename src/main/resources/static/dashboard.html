@@ -18,7 +18,7 @@
         }
 
         .sidebar {
-            width: 220px;
+            width: 240px;
             background-color: #fff;
             border-right: 1px solid #ddd;
             padding: 1.5rem 1rem;
@@ -41,6 +41,15 @@
         .menu-item:hover {
             background-color: #e8f0fe;
             color: #1967d2;
+        }
+
+        .function-summary {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.4;
+            border-top: 1px solid #ddd;
+            padding-top: 1rem;
         }
 
         .main {
@@ -73,7 +82,7 @@
         }
 
         .section {
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .section h3 {
@@ -93,26 +102,17 @@
         .card-list li {
             padding: 0.5rem 0.4rem;
             border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .card-list li:last-child {
             border-bottom: none;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
-
-        th, td {
-            padding: 0.6rem;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
-
-        thead {
-            background-color: #f0f0f0;
+        input[type="checkbox"] {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -120,11 +120,17 @@
 <!-- 사이드 메뉴 -->
 <div class="sidebar">
     <h2>UserAccount</h2>
-    <div class="menu-item">📥 받은편지함</div>
-    <div class="menu-item">📤 보낸편지함</div>
-    <div class="menu-item">📁 내 드라이브</div>
-    <div class="menu-item">🗑️ 휴지통</div>
-    <div class="menu-item">⚙️ 설정</div>
+    <div class="menu-item" onclick="showSection('drive')">📁 내 드라이브</div>
+    <div class="menu-item" onclick="showSection('mail')">📧 받은편지함</div>
+    <div class="menu-item" onclick="showSection('settings')">⚙️ 설정</div>
+
+    <div class="function-summary">
+        <strong>📊 기능 요약</strong><br />
+        📧 메일: 작성, 필터, 전달<br />
+        📁 드라이브: 폴더, 공유, 복원<br />
+        🔍 검색: 조건 검색 지원<br />
+        🛠 설정: 서명/권한/용량 관리
+    </div>
 </div>
 
 <!-- 메인 콘텐츠 -->
@@ -134,115 +140,25 @@
         <button class="logout-btn" onclick="logout()">로그아웃</button>
     </div>
 
-    <div class="section">
-        <h3>📁 최근 드라이브 파일</h3>
+    <!-- 📁 드라이브 섹션 -->
+    <div class="section" id="driveSection">
+        <h3>📁 내 드라이브</h3>
         <ul class="card-list">
-            <li>계획표.xlsx (1.2MB)</li>
-            <li>중요사진.jpg (620KB)</li>
-            <li>보고서2025.pdf (3.1MB)</li>
+            <li><input type="checkbox" name="drive" value="report.pdf" />보고서_최종.pdf</li>
+            <li><input type="checkbox" name="drive" value="design.jpg" />포스터디자인.jpg</li>
+            <li><input type="checkbox" name="drive" value="meeting.docx" />회의록.docx</li>
         </ul>
     </div>
 
-    <div class="section">
-        <h3>📧 최근 받은 메일</h3>
+    <!-- 📬 메일 섹션 -->
+    <div class="section" id="mailSection" style="display: none;">
+        <h3>📧 받은 메일함</h3>
         <ul class="card-list">
-            <li>[팀장] 프로젝트 진행상황 보고</li>
-            <li>[메일봇] 회원가입을 축하합니다 🎉</li>
-            <li>[알림] 보안 로그인 알림</li>
+            <li><input type="checkbox" name="mail" value="verify" />[관리자] 계정 인증 안내</li>
+            <li><input type="checkbox" name="mail" value="newsletter" />[홍보팀] 5월 뉴스레터</li>
+            <li><input type="checkbox" name="mail" value="security" />[안내] 보안 설정 변경 알림</li>
         </ul>
     </div>
 
-    <div class="section">
-        <h3>📋 화면 목록</h3>
-        <ul class="card-list">
-            <li>[전체] 프로젝트 전체현황 보고서</li>
-            <li>[화면목록] 화면 목록을 출력합니다 ✏️</li>
-            <li>[보안] 보안 로그인 입력</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h3>📊 이메일 vs 클라우드 드라이브 기능 비교</h3>
-        <div style="overflow-x:auto">
-            <table>
-                <thead>
-                <tr>
-                    <th>분류</th>
-                    <th>이메일 서비스</th>
-                    <th>클라우드 드라이브</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>기본 화면</td>
-                    <td>받은편지함, 보낸편지함, 임시보관함</td>
-                    <td>내 드라이브, 공유 문서함, 최근 항목</td>
-                </tr>
-                <tr>
-                    <td>정리 기능</td>
-                    <td>라벨, 중요표시, 별표</td>
-                    <td>폴더, 색상 태그, 즐겨찾기</td>
-                </tr>
-                <tr>
-                    <td>검색 기능</td>
-                    <td>제목, 내용, 보낸 사람 검색</td>
-                    <td>파일명, 유형, 작성자 검색</td>
-                </tr>
-                <tr>
-                    <td>작성 기능</td>
-                    <td>새 메일 작성 및 첨부</td>
-                    <td>새 폴더/문서/스프레드시트 생성</td>
-                </tr>
-                <tr>
-                    <td>공유 기능</td>
-                    <td>이메일 직접 전송, CC/BCC</td>
-                    <td>링크 공유, 권한 설정</td>
-                </tr>
-                <tr>
-                    <td>휴지통</td>
-                    <td>삭제 메일 보관</td>
-                    <td>삭제 파일 복구 가능</td>
-                </tr>
-                <tr>
-                    <td>설정</td>
-                    <td>서명, 필터, 전달 규칙</td>
-                    <td>용량 확인, 권한 설정</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="section">
-        <h3>📌 기능별 설명</h3>
-        <ul class="card-list">
-            <li><strong>기본 화면:</strong> 이메일은 받은편지함 중심, 드라이브는 내 드라이브 중심입니다.</li>
-            <li><strong>정리 기능:</strong> Gmail은 라벨, Drive는 폴더/색상 태그로 정리합니다.</li>
-            <li><strong>검색 기능:</strong> 둘 다 고급 조건 검색을 지원합니다.</li>
-            <li><strong>작성 기능:</strong> 이메일은 메일 작성, 드라이브는 문서/시트 생성입니다.</li>
-            <li><strong>공유 기능:</strong> 이메일은 직접 전송, 드라이브는 링크 공유입니다.</li>
-            <li><strong>휴지통:</strong> 삭제 후 복구 가능성이 있는 임시 공간입니다.</li>
-            <li><strong>설정:</strong> 이메일은 서명/필터, 드라이브는 저장공간/권한 관리 중심입니다.</li>
-        </ul>
-    </div>
-</div>
-
-<script>
-    const username = localStorage.getItem("loggedInUser");
-    const welcomeText = document.getElementById("welcomeText");
-
-    if (!username) {
-        alert("로그인이 필요합니다.");
-        location.href = "/index.html";
-    } else {
-        welcomeText.textContent = `${username}님, 반갑습니다!`;
-    }
-
-    function logout() {
-        localStorage.removeItem("loggedInUser");
-        localStorage.removeItem("userMeta");
-        location.href = "/home.html";
-    }
-</script>
-</body>
-</html>
+    <!-- ⚙️ 설정 섹션 -->
+    <div class="section" id="settingsSection" style="display
