@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8" />
-    <title>로그인</title>
+    <title>회원 계정</title>
     <style>
         * {
             box-sizing: border-box;
@@ -76,16 +76,19 @@
 <div class="container">
     <h2 id="formTitle">로그인</h2>
 
+    <!-- 로그인 폼 -->
     <form id="loginForm">
         <input type="text" id="login-username" placeholder="아이디" required />
         <input type="password" id="login-password" placeholder="비밀번호" required />
         <button type="submit">로그인</button>
     </form>
 
+    <!-- 회원가입 폼 -->
     <form id="signupForm" style="display: none;">
         <input type="text" id="signup-username" placeholder="아이디" required />
+        <input type="tel" id="signup-phone" placeholder="전화번호" required />
         <input type="password" id="signup-password" placeholder="비밀번호" required />
-        <input type="email" id="signup-email" placeholder="이메일" required />
+        <input type="password" id="signup-confirm" placeholder="비밀번호 확인" required />
         <button type="submit">회원가입</button>
     </form>
 
@@ -116,18 +119,38 @@
         alertBox.textContent = "";
     }
 
+    // 로그인 처리
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const username = document.getElementById("login-username").value;
+        localStorage.setItem("loggedInUser", username);
+        window.location.href = "/dashboard.html";
+    });
+
     // 회원가입 처리
     document.getElementById("signupForm").addEventListener("submit", function (e) {
         e.preventDefault();
-        const username = document.getElementById("signup-username").value;
+
+        const username = document.getElementById("signup-username").value.trim();
+        const phone = document.getElementById("signup-phone").value.trim();
         const password = document.getElementById("signup-password").value;
-        const email = document.getElementById("signup-email").value;
+        const confirm = document.getElementById("signup-confirm").value;
         const alertBox = document.getElementById("alertBox");
+
+        if (password !== confirm) {
+            alertBox.textContent = "❗ 비밀번호가 일치하지 않습니다.";
+            alertBox.style.color = "crimson";
+            return;
+        }
 
         fetch("/api/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password, email })
+            body: JSON.stringify({
+                username,
+                password,
+                email: phone // ⚠️ 서버에서 전화번호 저장 방식에 맞게 수정 필요
+            })
         })
             .then(res => res.text())
             .then(msg => {
@@ -139,17 +162,6 @@
                 alertBox.style.color = "crimson";
             });
     });
-
-    // 로그인 처리
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-        const username = document.getElementById("login-username").value;
-
-        // 여기선 임시로 로그인 성공 처리
-        localStorage.setItem("loggedInUser", username);
-        window.location.href = "/dashboard.html"; // ✅ 로그인 후 전용 페이지로 이동
-    });
-
 </script>
 </body>
 </html>

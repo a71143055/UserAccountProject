@@ -2,59 +2,150 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8" />
-    <title>대시보드</title>
+    <title>UserAccount 드라이브</title>
     <style>
-        body {
-            margin: 0;
+        * {
+            box-sizing: border-box;
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f8fafc;
-            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 100vh;
+            background-color: #f1f3f4;
         }
 
-        .dashboard {
-            background: white;
-            padding: 2rem 3rem;
-            border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        /* 왼쪽 메뉴 */
+        .sidebar {
+            width: 200px;
+            background-color: white;
+            border-right: 1px solid #ddd;
+            padding: 1rem;
         }
 
-        h1 {
+        .sidebar h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+
+        .menu-item {
             margin-bottom: 1rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            color: #333;
         }
 
-        button {
-            padding: 0.6rem 1.5rem;
-            background-color: #333;
-            color: #fff;
+        .menu-item:hover {
+            background-color: #e5efff;
+            color: #1967d2;
+        }
+
+        /* 메인 컨텐츠 */
+        .main {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .welcome {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .logout-btn {
+            padding: 0.4rem 1rem;
+            background-color: #444;
+            color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
         }
+
+        .card {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .file-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .file-list li {
+            padding: 0.4rem;
+            border-bottom: 1px solid #eee;
+        }
     </style>
 </head>
 <body>
-<div class="dashboard">
-    <h1 id="greeting">환영합니다!</h1>
-    <button onclick="logout()">로그아웃</button>
+<!-- 좌측 메뉴 -->
+<div class="sidebar">
+    <h2>UserAccount</h2>
+    <div class="menu-item">📁 내 드라이브</div>
+    <div class="menu-item">📧 받은 메일함</div>
+    <div class="menu-item">⚙️ 설정</div>
+</div>
+
+<!-- 우측 본문 -->
+<div class="main">
+    <div class="header">
+        <div class="welcome" id="welcomeText">환영합니다!</div>
+        <button class="logout-btn" onclick="logout()">로그아웃</button>
+    </div>
+
+    <!-- 콘텐츠: 드라이브 영역 -->
+    <div class="card">
+        <h3>내 드라이브</h3>
+        <ul class="file-list">
+            <li>계획표.xlsx</li>
+            <li>계약서.pdf</li>
+            <li>사진_여름휴가.jpg</li>
+        </ul>
+    </div>
+
+    <!-- 콘텐츠: 메일 영역 -->
+    <div class="card">
+        <h3>최근 받은 메일</h3>
+        <ul class="file-list">
+            <li>[서비스팀] 가입을 환영합니다!</li>
+            <li>[이벤트] 특별 할인 쿠폰이 도착했어요</li>
+            <li>[보안] 로그인 알림</li>
+        </ul>
+    </div>
 </div>
 
 <script>
     const username = localStorage.getItem("loggedInUser");
-    const greeting = document.getElementById("greeting");
+    const welcomeText = document.getElementById("welcomeText");
 
     if (!username) {
         alert("로그인이 필요합니다.");
         window.location.href = "/index.html";
     } else {
-        greeting.textContent = `${username}님, 환영합니다!`;
+        welcomeText.textContent = `${username}님, 반갑습니다!`;
     }
 
     function logout() {
         localStorage.removeItem("loggedInUser");
+        localStorage.removeItem("userMeta");
         window.location.href = "/home.html";
     }
 </script>
