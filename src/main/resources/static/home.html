@@ -26,28 +26,10 @@
 
     h1 {
       font-size: 1.8rem;
-      margin-bottom: 1rem;
+      margin: 0;
       color: #333;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      margin: 0.5rem;
-      border-radius: 6px;
-      border: none;
-      background-color: #4CAF50;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .btn.secondary {
-      background-color: #2196F3;
-    }
-
-    /* 🔹 오른쪽 상단 네비게이션 버튼 스타일 */
     .top-right-nav {
       position: fixed;
       top: 20px;
@@ -71,39 +53,25 @@
   </style>
 </head>
 <body>
-<!-- 🔹 고정된 상단 네비게이션 버튼 -->
+<!-- 🔹 오른쪽 위 로그인/회원가입 or 로그아웃 -->
 <div class="top-right-nav">
   <a href="/index.html" id="navAction" class="nav-link">로그인 / 회원가입</a>
-</div>
-
-<div class="intro">
-  <h1 id="greetingBox">환영합니다!</h1>
-  <div id="authButtons">
-    <a href="/index.html" class="btn">로그인</a>
-    <a href="/index.html" class="btn secondary">회원가입</a>
-  </div>
 </div>
 
 <script>
   const user = localStorage.getItem("loggedInUser");
   const greetingBox = document.getElementById("greetingBox");
-  const authButtons = document.getElementById("authButtons");
   const navAction = document.getElementById("navAction");
 
   if (user) {
     greetingBox.textContent = `${user}님, 환영합니다!`;
-    authButtons.innerHTML = `<button class="btn" onclick="logout()">로그아웃</button>`;
     navAction.textContent = "로그아웃";
     navAction.href = "#";
     navAction.onclick = () => {
-      logout();
+      localStorage.removeItem("loggedInUser");
+      location.reload();
       return false;
     };
-  }
-
-  function logout() {
-    localStorage.removeItem("loggedInUser");
-    location.reload();
   }
 </script>
 </body>
