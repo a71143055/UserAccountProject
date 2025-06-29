@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8" />
-    <title>UserAccount 드라이브</title>
+    <title>UserAccount Dashboard</title>
     <style>
         * {
             box-sizing: border-box;
@@ -17,34 +17,34 @@
             background-color: #f1f3f4;
         }
 
-        /* 왼쪽 메뉴 */
+        /* 📚 사이드바 */
         .sidebar {
-            width: 200px;
-            background-color: white;
+            width: 220px;
+            background-color: #fff;
             border-right: 1px solid #ddd;
-            padding: 1rem;
+            padding: 1.5rem 1rem;
         }
 
         .sidebar h2 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 1.5rem;
-            color: #444;
+            color: #1967d2;
         }
 
         .menu-item {
             margin-bottom: 1rem;
-            cursor: pointer;
-            padding: 0.5rem;
+            padding: 0.5rem 0.75rem;
             border-radius: 6px;
             color: #333;
+            cursor: pointer;
         }
 
         .menu-item:hover {
-            background-color: #e5efff;
+            background-color: #e8f0fe;
             color: #1967d2;
         }
 
-        /* 메인 컨텐츠 */
+        /* 📦 메인 컨텐츠 */
         .main {
             flex: 1;
             padding: 2rem;
@@ -64,70 +64,75 @@
         }
 
         .logout-btn {
-            padding: 0.4rem 1rem;
+            padding: 0.5rem 1rem;
             background-color: #444;
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
+            font-weight: 500;
         }
 
-        .card {
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h3 {
+            margin-bottom: 0.6rem;
+            color: #555;
+        }
+
+        .card-list {
             background: white;
-            padding: 1rem;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            margin-bottom: 1rem;
+            padding: 1rem;
         }
 
-        .card h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .file-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .file-list li {
-            padding: 0.4rem;
+        .card-list li {
+            padding: 0.5rem 0.3rem;
             border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+        }
+
+        .card-list li:last-child {
+            border-bottom: none;
         }
     </style>
 </head>
 <body>
-<!-- 좌측 메뉴 -->
+<!-- 📚 사이드 메뉴 -->
 <div class="sidebar">
     <h2>UserAccount</h2>
+    <div class="menu-item">📥 받은편지함</div>
+    <div class="menu-item">📤 보낸편지함</div>
     <div class="menu-item">📁 내 드라이브</div>
-    <div class="menu-item">📧 받은 메일함</div>
+    <div class="menu-item">🗑️ 휴지통</div>
     <div class="menu-item">⚙️ 설정</div>
 </div>
 
-<!-- 우측 본문 -->
+<!-- 📦 메인 콘텐츠 -->
 <div class="main">
     <div class="header">
         <div class="welcome" id="welcomeText">환영합니다!</div>
         <button class="logout-btn" onclick="logout()">로그아웃</button>
     </div>
 
-    <!-- 콘텐츠: 드라이브 영역 -->
-    <div class="card">
-        <h3>내 드라이브</h3>
-        <ul class="file-list">
-            <li>계획표.xlsx</li>
-            <li>계약서.pdf</li>
-            <li>사진_여름휴가.jpg</li>
+    <div class="section">
+        <h3>📁 최근 드라이브 파일</h3>
+        <ul class="card-list">
+            <li>계획표.xlsx (1.2MB)</li>
+            <li>중요사진.jpg (620KB)</li>
+            <li>보고서2025.pdf (3.1MB)</li>
         </ul>
     </div>
 
-    <!-- 콘텐츠: 메일 영역 -->
-    <div class="card">
-        <h3>최근 받은 메일</h3>
-        <ul class="file-list">
-            <li>[서비스팀] 가입을 환영합니다!</li>
-            <li>[이벤트] 특별 할인 쿠폰이 도착했어요</li>
-            <li>[보안] 로그인 알림</li>
+    <div class="section">
+        <h3>📧 최근 받은 메일</h3>
+        <ul class="card-list">
+            <li>[팀장] 프로젝트 진행상황 보고</li>
+            <li>[메일봇] 회원가입을 축하합니다 🎉</li>
+            <li>[알림] 보안 로그인 알림</li>
         </ul>
     </div>
 </div>
