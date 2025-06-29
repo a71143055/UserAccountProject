@@ -130,7 +130,7 @@
 <div class="sidebar">
     <h2>UserAccount</h2>
     <div class="menu-item" onclick="showSection('drive')">📁 내 드라이브</div>
-    <div class="menu-item" onclick="showSection('mail')">📧 받은편지함</div>
+    <div class="menu-item" onclick="showSection('mail')">📧 편지함</div>
     <div class="menu-item" onclick="showSection('settings')">⚙️ 설정</div>
 
     <div class="function-summary">
@@ -182,29 +182,41 @@
         <ul class="card-list" id="inboxList">
             <li>
                 <input type="checkbox" name="mail" value="verify" />
-                <a href="/mail/verify.html">[관리자] 계정 인증 안내</a>
+                <a href="/mail/verify.html">
+                    [관리자] 계정 인증 안내 - 계정 활성화를 위해 인증을 완료해주세요. (2025-06-28)
+                </a>
             </li>
             <li>
                 <input type="checkbox" name="mail" value="newsletter" />
-                <a href="/mail/newsletter.html">[홍보팀] 5월 뉴스레터</a>
+                <a href="/mail/newsletter.html">
+                    [홍보팀] 6월 뉴스레터 🌟 - 이번 달 주요 소식을 확인해보세요! (2025-06-25)
+                </a>
             </li>
             <li>
                 <input type="checkbox" name="mail" value="security" />
-                <a href="/mail/security.html">[안내] 보안 설정 변경 알림</a>
+                <a href="/mail/security.html">
+                    [보안센터] 로그인 알림 - 새로운 기기에서 접근이 감지되었습니다. (2025-06-24)
+                </a>
             </li>
         </ul>
+
 
         <!-- 보낸 메일 목록 -->
         <ul class="card-list" id="sentList" style="display: none;">
             <li>
-                <input type="checkbox" name="sent" value="project" />
-                <a href="/mail/sent/project.html">[김대리] 프로젝트 일정 공유</a>
+                <input type="checkbox" name="sent" value="report" />
+                <a href="/mail/sent/report.html">
+                    [김대리] 프로젝트 보고서 전달 - 2분기 결과 요약본을 확인해주세요. (2025-06-26)
+                </a>
             </li>
             <li>
                 <input type="checkbox" name="sent" value="thanks" />
-                <a href="/mail/sent/thanks.html">[인사팀] 감사 인사 메일</a>
+                <a href="/mail/sent/thanks.html">
+                    [인사팀] 감사 인사 메일 - 입사 1주년을 축하드립니다 🎉 (2025-06-20)
+                </a>
             </li>
         </ul>
+
     </div>
 
 
