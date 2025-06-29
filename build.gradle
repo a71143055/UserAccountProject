@@ -6,6 +6,7 @@ plugins {
 
 group = 'kr.ac.kopo.jeong'
 version = '0.0.1-SNAPSHOT'
+java.sourceCompatibility = '17'
 
 java {
     toolchain {
